@@ -8,7 +8,7 @@ module.exports = (function(config) {
 	function run(message,args) {
 
 		// Rule out DMChannels.
-		if(typeof message.channel === 'DMChannel' || typeof message.guild === null) {
+		if(typeof message.channel === 'DMChannel' || typeof message.guild === undefined) {
 			message.reply('This command can only be executed from the discord server. not in DM!');
 			return;
 		}
