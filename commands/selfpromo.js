@@ -26,8 +26,8 @@ module.exports = (function(config) {
 			return;
 		} else {
 			let command = message.content.replace(config.prefix + "selfpromo ", "");
-			// Huge regex to check if the user sent a Twitch, Behance, YouTube or Mixer link.
-			if(new RegExp('https:\/\/(www\.)?((twitch\.tv\/[a-zA-Z0-9_]+)|(youtube\.com\/watch\?v=[a-zA-Z\-\_0-9]{11})|(youtu\.be\/[a-zA-Z\-\_0-9]{11})|(mixer\.com\/[a-zA-Z0-9]+)|(behance\.net\/gallery\/\d*?\/[0-9a-zA-Z\-]+?))').test(command) 
+			// Regex to check if the user sent a Twitch, Behance, YouTube or Mixer link.
+			if(/https:\/\/(www\.)?((twitch\.tv\/[a-zA-Z0-9_]+)|(youtube\.com\/watch\?v=[a-zA-Z\-\_0-9]{11})|(youtu\.be\/[a-zA-Z\-\_0-9]{11})|(mixer\.com\/[a-zA-Z0-9]+)|(behance\.net\/gallery\/\d*?\/[0-9a-zA-Z\-]+?))/.test(command) 
 				// People found an exploit in here - To mitigate the bot mentioning everyone.
 				&& command.indexOf("@everyone") < 0) {
 				// Send message in the selfpromo channel
@@ -39,6 +39,7 @@ module.exports = (function(config) {
 				// Remove their message so it doesnt show their link somewhere else.
 				message.delete();
 			} else {
+				console.log(command);
 				// Failed regex, invalid link.
 				message.reply('You\'re not allowed to send that');
 				message.delete();
