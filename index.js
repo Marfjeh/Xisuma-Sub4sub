@@ -29,7 +29,7 @@ let commandcache = function() {
 }
 
 bot.on('message', function(msg) {
-	if(msg.content.startsWith(config.prefix)) {
+	if(msg.content.startsWith(config.prefix) && !msg.author.bot) {
         const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
         if(typeof botcommands[command] != "undefined") {
